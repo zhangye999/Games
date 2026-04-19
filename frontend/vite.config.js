@@ -6,8 +6,8 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // 关键修正：base 应该在根层级，且直接赋值字符串
-  base: '/Games/', 
+  // 双地址兼容：资源使用相对路径，支持 / 与 /Games/ 两种入口
+  base: './',
   
   plugins: [
     vue(),

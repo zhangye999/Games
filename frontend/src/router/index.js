@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Index from '../views/PlayBoardGameIndex/PlayBoardGameIndex.vue';
 import Game from '../views/SelectGame/SelectGame.vue';
 import IncanGoldIndex from '../views/IncanGoldIndex/IncanGoldIndex.vue';
@@ -26,7 +26,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // 使用 hash 路由避免 GitHub Pages 在不同域名/子路径下的重写问题
+  history: createWebHashHistory(),
   routes,
 });
 
