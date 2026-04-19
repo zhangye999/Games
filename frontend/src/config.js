@@ -1,5 +1,4 @@
-// 游戏服务器配置（浏览器访问局域网 IP 时，WebSocket 需指向同一主机，不能用写死的 localhost）
-
+/* 以下是原后端访问方案（前后端同域名/同主机部署时可重新启用）
 function wsHostname() {
   if (typeof window === 'undefined') return 'localhost';
   return window.location.hostname;
@@ -27,17 +26,42 @@ export const config = {
     return `${wsProtocol()}://${wsHostname()}:${PORT.daGame}`;
   },
 };
+*/
+
+// 以下是新的方案（前端部署在 GitHub Pages，后端使用独立域名，如 Cloudflare 托管的 sigmaboy.cn）
+const DEFAULT_PUBLIC_WS = 'wss://api.sigmaboy.cn';
+const PUBLIC_WS_BASE = (import.meta.env.VITE_WS_BASE || DEFAULT_PUBLIC_WS).replace(/\/+$/, '');
+
+function buildWsUrl(path, fallbackPort) {
+  const customUrl = import.meta.env[path];
+  if (customUrl && customUrl.trim()) return customUrl.trim();
+  return `${PUBLIC_WS_BASE}:${fallbackPort}`;
+}
+
+export const config = {
+  get matchServerUrl() {
+    return buildWsUrl('VITE_WS_MATCH_URL', 3000);
+  },
+  get gameServerUrl() {
+    return buildWsUrl('VITE_WS_GAME_URL', 8080);
+  },
+  get daGameServerUrl() {
+    return buildWsUrl('VITE_WS_DA_GAME_URL', 8081);
+  },
+};
+// 以上是新的方案
 
 /**
  * 将 localStorage 或匹配服下发的 ws://localhost:… / 127.0.0.1 改为当前页面主机；
- * 页面为 https 时把 ws 升为 wss（若你未配 wss，请仍用 http 打开前端）。
+ * 页面为 https 时把 ws 升为 wss。
  */
 export function resolveWebSocketUrl(url) {
   if (url == null || typeof url !== 'string' || !url.trim()) return null;
   try {
     const u = new URL(url);
-    if (u.hostname === 'localhost' || u.hostname === '127.0.0.1') {
-      u.hostname = wsHostname();
+    if (u.hostname === 'localhost' || u.hostname === '127.0.0.1' || u.hostname === '0.0.0.0') {
+      const publicHost = new URL(PUBLIC_WS_BASE).hostname;
+      if (publicHost) u.hostname = publicHost;
     }
     if (typeof window !== 'undefined' && window.location.protocol === 'https:' && u.protocol === 'ws:') {
       u.protocol = 'wss:';
