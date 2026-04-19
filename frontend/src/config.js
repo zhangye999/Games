@@ -38,15 +38,21 @@ function buildWsUrl(path, fallbackPort) {
   return `${PUBLIC_WS_BASE}:${fallbackPort}`;
 }
 
+const WS_URL_BY_PORT = {
+  '3000': buildWsUrl('VITE_WS_MATCH_URL', 3000),
+  '8080': buildWsUrl('VITE_WS_GAME_URL', 8080),
+  '8081': buildWsUrl('VITE_WS_DA_GAME_URL', 8081),
+};
+
 export const config = {
   get matchServerUrl() {
-    return buildWsUrl('VITE_WS_MATCH_URL', 3000);
+    return WS_URL_BY_PORT['3000'];
   },
   get gameServerUrl() {
-    return buildWsUrl('VITE_WS_GAME_URL', 8080);
+    return WS_URL_BY_PORT['8080'];
   },
   get daGameServerUrl() {
-    return buildWsUrl('VITE_WS_DA_GAME_URL', 8081);
+    return WS_URL_BY_PORT['8081'];
   },
 };
 // 以上是新的方案
@@ -60,6 +66,8 @@ export function resolveWebSocketUrl(url) {
   try {
     const u = new URL(url);
     if (u.hostname === 'localhost' || u.hostname === '127.0.0.1' || u.hostname === '0.0.0.0') {
+      const mappedUrl = WS_URL_BY_PORT[u.port];
+      if (mappedUrl) return mappedUrl;
       const publicHost = new URL(PUBLIC_WS_BASE).hostname;
       if (publicHost) u.hostname = publicHost;
     }
