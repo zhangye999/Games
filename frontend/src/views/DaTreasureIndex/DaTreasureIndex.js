@@ -13,6 +13,7 @@ export default {
       inMatchQueue: false,
       wsConnected: false,
       showPopup: false,
+      showDifficultyHint: false,
       popupMessage: '',
       errorMessage: '',
       playerName: '',

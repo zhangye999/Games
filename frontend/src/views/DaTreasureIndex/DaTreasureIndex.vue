@@ -19,7 +19,27 @@
       </div>
     </div>
     <div class="player-options da-difficulty">
-      <div>市场难度</div>
+      <div class="da-difficulty-title-row">
+        <span>市场难度</span>
+        <div
+          class="da-difficulty-help"
+          :class="{ 'is-open': showDifficultyHint }"
+        >
+          <button
+            type="button"
+            class="da-difficulty-help-icon"
+            @click="showDifficultyHint = !showDifficultyHint"
+          >
+            ?
+          </button>
+          <div class="da-difficulty-hint">
+            温和：灾难 3%/10%/30%，抛压 0/3/10/30%，宝石 3%~17% + 不在场 20%/人。<br />
+            波动：灾难 10%/30%/50%，抛压与残酷相同；宝石基数×3（约 9%~51% 档）+ 不在场 30%/人。<br />
+            震荡：灾难与残酷相同；宝石基数×2（约 6%~34% 档）+ 不在场 30%/人。<br />
+            残酷：灾难 10%/50%/90%，抛压 0/10/30/50%，宝石 3%~17% + 不在场 30%/人。
+          </div>
+        </div>
+      </div>
       <div class="player-option-buttons">
         <button
           type="button"
@@ -50,12 +70,6 @@
           残酷
         </button>
       </div>
-      <p class="da-difficulty-hint">
-        温和：灾难 3%/10%/30%，抛压 0/3/10/30%，宝石 3%~17% + 不在场 20%/人。<br />
-        波动：灾难 10%/30%/50%，抛压与残酷相同；宝石基数×3（约 9%~51% 档）+ 不在场 30%/人。<br />
-        震荡：灾难与残酷相同；宝石基数×2（约 6%~34% 档）+ 不在场 30%/人。<br />
-        残酷：灾难 10%/50%/90%，抛压 0/10/30/50%，宝石 3%~17% + 不在场 30%/人。
-      </p>
     </div>
     <div id="player-name-input">
       <input v-model="playerName" placeholder="请输入您的昵称" />
@@ -175,14 +189,58 @@
   margin-top: 1rem;
 }
 
+.da-difficulty-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.da-difficulty-help {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.da-difficulty-help-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 209, 125, 0.7);
+  background: rgba(0, 0, 0, 0.45);
+  color: #f7d17d;
+  font-size: 0.8rem;
+  line-height: 1;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+}
+
 .da-difficulty-hint {
-  margin: 0.75rem 0 0;
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: min(90vw, 520px);
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 209, 125, 0.25);
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
   font-size: 0.78rem;
   color: rgba(247, 209, 125, 0.75);
   line-height: 1.45;
-  text-align: center;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: left;
+}
+
+.da-difficulty-help:hover .da-difficulty-hint,
+.da-difficulty-help.is-open .da-difficulty-hint {
+  opacity: 1;
+  visibility: visible;
 }
 </style>
