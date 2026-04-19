@@ -1,0 +1,82 @@
+#home-page{
+    width: 100vw;
+    
+    min-height: 90vh;
+    background: url(/src/assets/background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#WelcomeToIncan{
+    width: 100%;
+    text-align: center;
+    padding: 8vh 0 5vh 0;
+    color: rgb(255, 208, 0);
+    font-size: 4vw;
+    font-weight: 800;
+    text-shadow: 10px 10px 10px rgb(225, 193, 8);
+    -webkit-text-stroke: 0.03em rgb(51, 48, 28);
+}
+#PlayerCountSelectBox{
+    display: flex;
+    justify-content: center;
+}
+.player-options{
+    text-align: center;
+    color: white;
+    font-size: 1.5vw;
+}
+.player-option-buttons {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .player-option-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #9be56d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .player-option-buttons button.selected {
+    background-color: #54d334;
+  }
+  
+  .start-btn {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .start-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+#start-game{
+    width: 100%;
+    display: flex;
+    margin: 5vh 0 0 0;
+    justify-content: center;
+}
+#start-button{
+    padding: 1.5vw;
+    font-size: 4em;
+    color:white;
+    font-weight: bold;
+    background: linear-gradient(wheat,gold);
+    border: solid 0.05em black;
+    border-radius: 0.5em;
+}
+#player-name-input{
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}

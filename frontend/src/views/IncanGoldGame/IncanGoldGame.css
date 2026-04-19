@@ -1,0 +1,1209 @@
+#game-page {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0 0 35vh 0;
+    background: url(/src/assets/DarkWood.jpg);
+    background-repeat: repeat;
+    color: #f7d17d;
+}
+.room-info{
+    font-size: 3vh;
+    text-align: center;
+    padding: 0.3rem;
+}
+
+/* 游戏消息区域样式 */
+.game-messages {
+    max-width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 3px 0;
+    font-size: 0.9rem;
+    color: #f7d17d;
+}
+
+#player-info-area {
+    display: flex;
+    flex-wrap: wrap;  /* 允许换行 */
+    justify-content: space-around;
+    gap: 10px; /* 设置子元素之间的间距 */
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-around;
+    flex: 0 0 calc(25% - 10px); /* 每个 player-info 元素宽度为 33.33% - 10px 间隙 */
+    
+    box-sizing: border-box;
+    margin-bottom: 20px; /* 元素底部间距 */
+    padding: 10px;
+    
+    background-color: transparent; /* 背景色 */
+    border-radius: 5px; /* 圆角 */
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 
+        inset 2px 2px 4px rgba(0, 0, 0, 0.2),   /* 内凹阴影 */
+        inset -2px -2px 4px rgba(255, 255, 255, 0.3), /* 内凹亮光阴影 */
+        inset 4px 4px 6px rgba(0, 0, 0, 0.3),    /* 深阴影 */
+        4px 4px 10px rgba(0, 0, 0, 0.2);  /* 外部阴影，增强凹槽效果 */
+    color: #f7d17d; /* 文本颜色 */
+    background-color: rgba(0, 0, 0, 0.034);
+}
+
+/* 当前玩家高亮样式 */
+.player-info.current-player {
+    background-color: rgba(247, 209, 125, 0.1);
+    box-shadow: 
+        inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.3),
+        inset 4px 4px 6px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(247, 209, 125, 0.5);
+    border: 1px solid rgba(247, 209, 125, 0.3);
+}
+
+.player-name-status{
+    width: 30%;
+    height: 100%;
+    text-wrap: wrap;
+}
+#player-name{
+    font-size: 1.2rem;
+    text-wrap: nowrap;
+    height: 50%;
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#player-name-you{
+    font-size: 0.8rem;
+    height: 50%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+.player-status{
+    font-size: 0.5rem;
+}
+.total-gem{
+    font-size: 0.75rem;
+    
+    text-wrap: nowrap;
+}
+.gem-number{
+    font-size: 0.75rem;
+}
+
+/* 本轮宝石样式 */
+.round-gem {
+    font-size: 0.75rem;
+    text-wrap: nowrap;
+    margin-right: 12%;
+    color: #ffa64d;
+}
+
+.card-display-area{
+    height: 50vh;
+    display: flex;
+}
+#card-stack {
+    position: relative;
+    width: 200px;
+    min-width: 200px;
+    height: 280px;
+    margin: 20px 10px 20px 60px;
+    perspective: 1000px;
+}
+
+/* 增加更多的牌堆层数 */
+.card-stack-layer {
+    position: absolute;
+    width: 100%;
+    min-width: 200px;
+    height: 100%;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform-origin: center center;
+    background-image: url(/src/assets/4-3card2.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* 为每一层牌添加不同的位置和旋转效果，增加更多层 */
+.card-stack-layer:nth-child(1) {
+    transform: translateZ(-20px) translateX(-5px) rotate(3deg);
+}
+
+.card-stack-layer:nth-child(2) {
+    transform: translateZ(-18px) translateX(-4px) rotate(2deg);
+}
+
+.card-stack-layer:nth-child(3) {
+    transform: translateZ(-16px) translateX(-3px) rotate(1deg);
+}
+
+.card-stack-layer:nth-child(4) {
+    transform: translateZ(-14px) translateX(-2px) rotate(0.5deg);
+}
+
+.card-stack-layer:nth-child(5) {
+    transform: translateZ(-12px) translateX(-1px) rotate(0deg);
+}
+
+.card-stack-layer:nth-child(6) {
+    transform: translateZ(-10px) translateX(0px) rotate(-0.5deg);
+}
+
+.card-stack-layer:nth-child(7) {
+    transform: translateZ(-8px) translateX(1px) rotate(-1deg);
+}
+
+.card-stack-layer:nth-child(8) {
+    transform: translateZ(-6px) translateX(2px) rotate(-1.5deg);
+}
+
+.card-stack-layer:nth-child(9) {
+    transform: translateZ(-4px) translateX(3px) rotate(-2deg);
+}
+
+.card-stack-layer:nth-child(10) {
+    transform: translateZ(-2px) translateX(4px) rotate(-2.5deg);
+}
+
+.card-stack-top {
+    position: absolute;
+    width: 100%;
+    min-width: 200px;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card-stack-top img {
+    width: 100%;
+    min-width: 200px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #333333;
+}
+
+/* 增强鼠标悬停效果 */
+#card-stack:hover .card-stack-top {
+    transform: translateY(-30px) translateZ(30px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+#card-stack:hover .card-stack-layer {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 添加点击动画效果 */
+#card-stack:active .card-stack-top {
+    transform: translateY(-10px) translateZ(10px) scale(0.98);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 表决遮罩/等待状态时不触发牌堆悬停按下动画 */
+#card-stack.incan-card-stack--voting-ui:hover .card-stack-top,
+#card-stack.incan-card-stack--voting-ui:hover .card-stack-layer {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#card-stack.incan-card-stack--voting-ui:active .card-stack-top {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#card-stack.incan-card-stack--voting-ui:hover .draw-hint {
+    opacity: 0;
+}
+
+/* 表决遮罩：上半绿色继续探险，下半红色离开矿场 */
+.card-stack-vote-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    pointer-events: auto;
+    touch-action: manipulation;
+}
+
+.vote-mask {
+    flex: 1 1 50%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.35rem;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s ease;
+}
+
+.vote-mask--stay {
+    background: rgba(34, 197, 94, 0.42);
+}
+
+.vote-mask--stay:active,
+.vote-mask--stay:hover {
+    background: rgba(34, 197, 94, 0.58);
+}
+
+.vote-mask--leave {
+    background: rgba(220, 38, 38, 0.42);
+}
+
+.vote-mask--leave:active,
+.vote-mask--leave:hover {
+    background: rgba(220, 38, 38, 0.58);
+}
+
+.vote-mask__label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.96);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+    pointer-events: none;
+}
+
+.card-stack-wait-hint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #f7d17d;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem;
+    pointer-events: auto;
+}
+
+#card-display {
+    width: 950px;
+    height: 290px;
+    margin: 20px 20px 80px 50px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* 启用横向滚动 */
+    overflow-y: hidden; /* 禁用纵向滚动 */
+    padding: 10px 10px 0px 10px; /* 增加底部内边距，为滚动条留出空间 */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(247, 209, 125, 0.4) rgba(68, 68, 68, 0.2); /* Firefox，增加透明度 */
+    position: relative; /* 用于定位滚动条 */
+}
+
+/* 为Chrome/Safari/Edge定制滚动条样式 */
+#card-display::-webkit-scrollbar {
+    height: 6px; /* 减小滚动条高度 */
+}
+
+#card-display::-webkit-scrollbar-track {
+    background: rgba(68, 68, 68, 0.2); /* 半透明背景 */
+    border-radius: 4px;
+    margin: 0 10px; /* 两端留出边距 */
+}
+
+#card-display::-webkit-scrollbar-thumb {
+    background-color: rgba(247, 209, 125, 0.4); /* 半透明滑块 */
+    border-radius: 4px;
+}
+
+/* 鼠标悬停时滚动条显示得更明显一些 */
+#card-display:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(247, 209, 125, 0.7);
+}
+
+#card-display:hover::-webkit-scrollbar-track {
+    background: rgba(68, 68, 68, 0.4);
+}
+
+.card {
+    min-width: 200px; /* 最小宽度，防止收缩 */
+    width: 200px; /* 固定宽度 */
+    height: 270px;
+    flex-shrink: 0; /* 防止卡牌收缩 */
+    border-radius: 10px;
+    background-color: #f7d17d;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
+}
+
+.choice-area{
+    display: flex;
+    justify-content: space-around;
+    
+    gap: 50px;
+    margin-top: 25px; /* 添加上边距，将按钮往下移动 */
+}
+
+#leave-button {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    
+    touch-action: manipulation;
+}
+#goahead-button {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    
+    touch-action: manipulation;
+}
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+            to left,
+            hsl(340deg 100% 16%) 0%,
+            hsl(340deg 100% 32%) 8%,
+            hsl(340deg 100% 32%) 92%,
+            hsl(340deg 100% 16%) 100%
+    );
+}
+
+.front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+button:hover {
+    filter: brightness(110%);
+}
+
+button:hover .front {
+    transform: translateY(-6px);
+    transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+button:hover .shadow {
+    transform: translateY(4px);
+    transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* 控制按钮区域样式 */
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* 普通按钮基本样式 */
+.normal-button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.normal-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.normal-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 各按钮颜色 */
+.draw-btn {
+    background-color: #3498db;
+}
+
+.next-round-btn {
+    background-color: #2ecc71;
+}
+
+.reset-btn {
+    background-color: #e74c3c;
+}
+
+.show-deck-btn {
+    background-color: #9b59b6;
+}
+
+/* 游戏状态信息 */
+.game-status {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    
+    border-radius: 8px;
+    margin: 10px auto;
+    max-width: 80%;
+}
+
+.round-info, .deck-info, .gems-info, .treasures-info {
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.034);
+    box-shadow: 
+        inset 2px 2px 4px rgba(0, 0, 0, 0.2),   /* 内凹阴影 */
+        inset -2px -2px 4px rgba(255, 255, 255, 0.3), /* 内凹亮光阴影 */
+        inset 4px 4px 6px rgba(0, 0, 0, 0.3),    /* 深阴影 */
+        4px 4px 10px rgba(0, 0, 0, 0.2);  /* 外部阴影，增强凹槽效果 */
+}
+
+/* 等待消息样式 */
+.waiting-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffa64d;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+/* 禁用按钮样式 */
+.normal-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 卡牌类型样式 */
+.card.gem {
+    color: white;
+    background-image: url(/src/assets/4-3card_front.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5px 5px 25px 5px;
+}
+
+/* 宝石牌的值显示 */
+.card.gem .card-value {
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* 宝藏牌样式 */
+.card.treasure {
+    background-color: #f1c40f;
+    color: #eebf05;
+    box-shadow: 0 0 15px 2px rgba(241, 196, 15, 0.8);
+    border: 3px solid #ae8b02;
+    background-image: url(/src/assets/4-3card_front_treasure.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 宝藏牌放射状光线效果 */
+.card.treasure::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 10deg,
+        rgba(255, 215, 0, 0.1) 10deg,
+        rgba(255, 215, 0, 0.1) 20deg,
+        transparent 20deg,
+        transparent 30deg,
+        rgba(255, 215, 0, 0.2) 30deg,
+        rgba(255, 215, 0, 0.2) 40deg,
+        transparent 40deg,
+        transparent 50deg,
+        rgba(255, 215, 0, 0.3) 50deg,
+        rgba(255, 215, 0, 0.3) 60deg,
+        transparent 60deg,
+        transparent 70deg,
+        rgba(255, 215, 0, 0.2) 70deg,
+        rgba(255, 215, 0, 0.2) 80deg,
+        transparent 80deg,
+        transparent 90deg,
+        rgba(255, 215, 0, 0.1) 90deg,
+        rgba(255, 215, 0, 0.1) 100deg,
+        transparent 100deg,
+        transparent 110deg,
+        rgba(255, 215, 0, 0.2) 110deg,
+        rgba(255, 215, 0, 0.2) 120deg,
+        transparent 120deg,
+        transparent 130deg,
+        rgba(255, 215, 0, 0.3) 130deg,
+        rgba(255, 215, 0, 0.3) 140deg,
+        transparent 140deg,
+        transparent 150deg,
+        rgba(255, 215, 0, 0.2) 150deg,
+        rgba(255, 215, 0, 0.2) 160deg,
+        transparent 160deg,
+        transparent 170deg,
+        rgba(255, 215, 0, 0.1) 170deg,
+        rgba(255, 215, 0, 0.1) 180deg,
+        transparent 180deg,
+        transparent 190deg,
+        rgba(255, 215, 0, 0.2) 190deg,
+        rgba(255, 215, 0, 0.2) 200deg,
+        transparent 200deg,
+        transparent 210deg,
+        rgba(255, 215, 0, 0.3) 210deg,
+        rgba(255, 215, 0, 0.3) 220deg,
+        transparent 220deg,
+        transparent 230deg,
+        rgba(255, 215, 0, 0.2) 230deg,
+        rgba(255, 215, 0, 0.2) 240deg,
+        transparent 240deg,
+        transparent 250deg,
+        rgba(255, 215, 0, 0.1) 250deg,
+        rgba(255, 215, 0, 0.1) 260deg,
+        transparent 260deg,
+        transparent 270deg,
+        rgba(255, 215, 0, 0.2) 270deg,
+        rgba(255, 215, 0, 0.2) 280deg,
+        transparent 280deg,
+        transparent 290deg,
+        rgba(255, 215, 0, 0.3) 290deg,
+        rgba(255, 215, 0, 0.3) 300deg,
+        transparent 300deg,
+        transparent 310deg,
+        rgba(255, 215, 0, 0.2) 310deg,
+        rgba(255, 215, 0, 0.2) 320deg,
+        transparent 320deg,
+        transparent 330deg,
+        rgba(255, 215, 0, 0.1) 330deg,
+        rgba(255, 215, 0, 0.1) 340deg,
+        transparent 340deg,
+        transparent 350deg,
+        rgba(255, 215, 0, 0.2) 350deg,
+        rgba(255, 215, 0, 0.2) 360deg,
+        transparent 360deg
+    );
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: rotate-rays 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 宝藏牌镜面光泽效果 */
+.card.treasure::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        270deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 25%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 100%
+    );
+    animation: mirror-shine 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 宝藏牌的值显示 */
+.card.treasure .card-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 
+        1px 1px 2px rgba(89, 74, 0, 0.672),
+        0 0 10px rgba(255, 223, 0, 0.8),
+        0 0 20px rgba(255, 223, 0, 0.6),
+        0 0 30px rgba(255, 223, 0, 0.4);
+    -webkit-text-stroke: 0.7px rgb(109, 89, 64);
+    background-color: rgba(46, 46, 46, 0);
+    padding: 10px 20px 30px 20px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 3;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* 放射状光线旋转动画 */
+@keyframes rotate-rays {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* 镜面光泽动画 */
+@keyframes mirror-shine {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    20% {
+        opacity: 0.8;
+    }
+    40% {
+        opacity: 0.8;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* 增强宝藏牌悬停效果 */
+.card.treasure:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 15px 20px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 223, 0, 0.6),
+        0 0 40px rgba(255, 223, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.card.treasure:hover::before {
+    animation: rotate-rays 4s linear infinite;
+}
+
+.card.treasure:hover::after {
+    animation: mirror-shine 2s ease-in-out infinite;
+}
+
+.card.treasure:hover .card-value {
+    animation: glow 1s infinite alternate;
+}
+
+/* 灾难牌的基本样式 */
+.card.disaster {
+    background-color: #ff6b6b;
+    color: white;
+    box-shadow: 0 0 10px 0 rgba(193, 0, 0, 0.919);
+    border: 1px solid #800000;
+    background-size: 102%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 不同灾难类型的特定样式 - 使用更高优先级的选择器 */
+.card.disaster.disaster-snake {
+    background-color: #549e39; /* 绿色背景，代表毒蛇 */
+    background-image: url(/src/assets/4-3card_front_snake.jpg) !important;
+}
+
+.card.disaster.disaster-mine {
+    background-color: #8b4513; /* 棕色背景，代表矿难 */
+    background-image: url(/src/assets/4-3card_front_collapse.jpg) !important;
+}
+
+.card.disaster.disaster-zombie {
+    background-color: #6c5b7b; /* 紫色背景，代表僵尸 */
+    background-image: url(/src/assets/4-3card_front_zombie.jpg) !important;
+}
+
+.card.disaster.disaster-fire {
+    background-color: #ff4500; /* 红橙色背景，代表火焰 */
+    background-image: url(/src/assets/4-3card_front_fire.jpg) !important;
+}
+
+.card.disaster.disaster-spider {
+    background-color: #32174d; /* 深紫色背景，代表蜘蛛 */
+    background-image: url(/src/assets/4-3card_front_spider.jpg) !important;
+}
+
+.card-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 点击开牌提示样式 */
+.draw-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background-color: rgba(0, 0, 0, 0.7);*/
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* 防止干扰点击事件 */
+    z-index: 10;
+}
+
+#card-stack:hover .draw-hint {
+    opacity: 1;
+}
+
+/* 禁用状态 */
+#card-stack .card-stack-top.disabled {
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+#card-stack .card-stack-top.disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    /* 游戏状态信息调整 */
+    .game-status {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        max-width: 95%;
+    }
+    
+    .round-info, .deck-info, .gems-info, .treasures-info {
+        width: 90%;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    
+    /* 玩家信息区域调整 */
+    #player-info-area {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .player-info {
+        flex: none;
+        width: 90%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .player-name-status {
+        margin-right: 0;
+        width: 40%;
+    }
+    
+    #player-name {
+        font-size: 1rem;
+    }
+    
+    .total-gem, .round-gem {
+        margin-left: 0;
+        width: 25%;
+    }
+    
+    /* 卡牌区域调整 */
+    .card-display-area {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    
+    #card-stack {
+        margin: 10px auto;
+        transform: scale(0.8);
+        height: 224px;
+    }
+    
+    #card-display {
+        width: 95%;
+        margin: 10px auto;
+        padding: 5px;
+    }
+    
+    .card {
+        min-width: 150px;
+        width: 150px;
+        height: 203px;
+    }
+    
+    .card-value {
+        font-size: 1.5rem;
+    }
+    
+    /* 按钮区域调整 */
+    .choice-area {
+        gap: 20px;
+    }
+    
+    .front {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .control-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .normal-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin: 5px;
+    }
+    
+    /* 游戏消息区域 */
+    .game-messages {
+        max-width: 95%;
+    }
+}
+
+/* 更小屏幕的手机适配 */
+@media screen and (max-width: 480px) {
+    .room-info {
+        font-size: 2.5vh;
+    }
+    
+    #card-stack {
+        transform: scale(0.7);
+        height: 196px;
+    }
+    
+    .card {
+        min-width: 120px;
+        width: 120px;
+        height: 162px;
+    }
+    
+    .card-value {
+        font-size: 1.3rem;
+    }
+    
+    .front {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .normal-button {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* 调整玩家信息卡片 */
+    .player-info {
+        padding: 5px;
+    }
+    
+    #player-name {
+        font-size: 0.9rem;
+    }
+    
+    .player-status, .total-gem, .round-gem {
+        font-size: 0.75rem;
+    }
+    
+    .gem-number {
+        font-size: 0.75rem;
+    }
+}
+
+/* 添加视口元标签 */
+
+/* 安慰剂卡牌样式 */
+.card.placebo-card {
+    opacity: 0.8;
+    position: relative;
+    overflow: hidden;
+}
+
+.card.placebo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card.placebo-card::after {
+    content: '安慰剂';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+/* 安慰剂按钮样式 */
+.placebo-draw-btn {
+    background-color: #9370db;
+    position: relative;
+    overflow: hidden;
+}
+
+.placebo-draw-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    animation: placebo-shine 2s infinite;
+}
+
+@keyframes placebo-shine {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .card.placebo-card::after {
+        font-size: 0.7rem;
+        top: 5px;
+        right: 5px;
+        padding: 1px 4px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card.placebo-card::after {
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+    }
+}
+
+/* 已移除灾难牌展示区域 */
+.removed-disasters {
+    max-width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.removed-disasters-title {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #f7d17d;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.removed-disasters-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.removed-disaster-card {
+    width: 120px;
+    height: 160px;
+    min-width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.removed-disaster-card:hover {
+    transform: scale(0.95);
+}
+
+.removed-disaster-info {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    text-align: center;
+}
+
+.disaster-name {
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.disaster-count {
+    color: #f7d17d;
+    font-size: 0.8rem;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .removed-disasters {
+        max-width: 95%;
+    }
+    
+    .removed-disasters-title {
+        font-size: 1rem;
+    }
+    
+    .removed-disaster-card {
+        width: 100px;
+        height: 140px;
+        min-width: 100px;
+    }
+    
+    .disaster-name {
+        font-size: 0.8rem;
+    }
+    
+    .disaster-count {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .removed-disaster-card {
+        width: 90px;
+        height: 126px;
+        min-width: 90px;
+    }
+    
+    .removed-disasters-list {
+        gap: 5px;
+        padding: 5px;
+    }
+}
+
