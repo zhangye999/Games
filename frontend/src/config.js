@@ -65,9 +65,18 @@ export function resolveWebSocketUrl(url) {
   if (url == null || typeof url !== 'string' || !url.trim()) return null;
   try {
     const u = new URL(url);
+    const mappedUrl = WS_URL_BY_PORT[u.port];
+    if (mappedUrl) {
+      const mapped = new URL(mappedUrl);
+      const publicHost = new URL(PUBLIC_WS_BASE).hostname;
+      const shouldMap =
+        u.hostname === 'localhost' ||
+        u.hostname === '127.0.0.1' ||
+        u.hostname === '0.0.0.0' ||
+        (publicHost && u.hostname === publicHost);
+      if (shouldMap) return mapped.toString();
+    }
     if (u.hostname === 'localhost' || u.hostname === '127.0.0.1' || u.hostname === '0.0.0.0') {
-      const mappedUrl = WS_URL_BY_PORT[u.port];
-      if (mappedUrl) return mappedUrl;
       const publicHost = new URL(PUBLIC_WS_BASE).hostname;
       if (publicHost) u.hostname = publicHost;
     }

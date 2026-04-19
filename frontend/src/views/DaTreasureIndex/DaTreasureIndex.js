@@ -62,7 +62,7 @@ export default {
             response.marketDifficulty
           )
             ? response.marketDifficulty
-            : 'brutal';
+            : this.marketDifficulty;
           localStorage.setItem('daMarketDifficulty', md);
 
           this.$router.push({
