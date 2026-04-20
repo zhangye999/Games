@@ -110,6 +110,15 @@
 <style>
 @import '../IncanGoldIndex/IncanGoldIndex.css';
 
+#home-page{
+  background: url(/src/assets/DaA-background.png);
+  width: 100vw;
+    
+  min-height: 90vh;
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .error-message {
   text-align: center;
   color: #ff6b6b;
